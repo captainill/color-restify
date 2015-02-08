@@ -1,7 +1,7 @@
 ## Getting Started ##
 
 #### Clone the repository ####
-    you need with this restify repo and the ambidex application
+    you need this restify repo and the ambidex application for this to make sense
 
 #### Install the dependencies ####
     npm install

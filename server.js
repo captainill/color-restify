@@ -41,13 +41,13 @@ server.use(restify.bodyParser());
 
 
 // Create a schema for our data
-var PaletteSchema = new Schema({
+/*var PaletteSchema = new Schema({
   name: String,
   hexList: Array
 });
 
 // Use the schema to register a model
-/*mongoose.model('Palette', PaletteSchema);
+mongoose.model('Palette', PaletteSchema);
 var PaletteMongooseModel = mongoose.model('Palette'); // just to emphasize this isn't a Backbone Model
 
 var palette1 = new PaletteMongooseModel({
