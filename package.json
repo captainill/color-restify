@@ -1,0 +1,19 @@
+{
+  "name": "palette-restify",
+  "version": "0.0.0",
+  "description": "An Ambidex example",
+  "main": "init.js",
+  "dependencies": {
+    "mongodb": "~1.4.9",
+    "mongoose": "~3.8.19",
+    "restify": "~2.8.5"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "seed-db": "make seed"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:captainill/$$.git"
+  }
+}
