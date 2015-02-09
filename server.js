@@ -67,8 +67,8 @@ var getAllPalettes = function(req, res, next){
   if( 'OPTIONS' == req.method ) {
     res.send( 203, 'OK' );
   }
-  console.log(req);
-  console.log("mongodbServer getAllPalettes");
+  //console.log(req);
+  //console.log("mongodbServer getAllPalettes");
 
   PaletteMongooseModel.find(function (arr,data) {
    // .sort('date', -1)
@@ -76,14 +76,14 @@ var getAllPalettes = function(req, res, next){
   });
 }
 
-var getColorByID = function (req, res, next) {
+var getPaletteByID = function (req, res, next) {
   res.send(req.params);
   return next();
 }
 
-server.get( config.baseAPIPath +'/palette/:id', getColorByID);
-
+server.get( config.baseAPIPath +'/palette/:id', getPaletteByID);
 server.get( config.baseAPIPath +'/palettes', getAllPalettes);
+
 
 server.listen(mongodbPort, function () {
   console.log('%s listening at %s', server.name, server.url);
