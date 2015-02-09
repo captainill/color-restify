@@ -41,29 +41,49 @@ server.use(restify.bodyParser());
 
 
 // Create a schema for our data
-/*var PaletteSchema = new Schema({
+var PaletteSchema = new Schema({
   name: String,
   hexList: Array
 });
 
 // Use the schema to register a model
-mongoose.model('Palette', PaletteSchema);
-var PaletteMongooseModel = mongoose.model('Palette'); // just to emphasize this isn't a Backbone Model
+mongoose.model('Palettes', PaletteSchema);
+var PaletteMongooseModel = mongoose.model('Palettes'); // just to emphasize this isn't a Backbone Model
 
-var palette1 = new PaletteMongooseModel({
+/*var palette1 = new PaletteMongooseModel({
   name: 'first palette',
   hexList: ["#1BE0FA", "#E780FF", "#FCD253", "#8082FF", "#DEE7DB", "#FFFFFF", "#2C2C2C", "#000000"]
 });
 palette1.save();*/
 
 
+var getAllPalettes = function(req, res, next){
+  // Resitify currently has a bug which doesn't allow you to set default headers
+  // This headers comply with CORS and allow us to mongodbServer our response to any origin
+  res.header( 'Access-Control-Allow-Origin', '*' );
+  res.header( 'Access-Control-Allow-Method', 'POST, GET, PUT, DELETE, OPTIONS' );
+  res.header( 'Access-Control-Allow-Headers', 'Origin, X-Requested-With, X-File-Name, Content-Type, Cache-Control' );
+  
+  if( 'OPTIONS' == req.method ) {
+    res.send( 203, 'OK' );
+  }
+  console.log(req);
+  console.log("mongodbServer getAllPalettes");
+
+  PaletteMongooseModel.find(function (arr,data) {
+   // .sort('date', -1)
+    res.send(data);
+  });
+}
 
 var getColorByID = function (req, res, next) {
   res.send(req.params);
   return next();
 }
 
-server.get('/api/v1/palette/:id', getColorByID);
+server.get( config.baseAPIPath +'/palette/:id', getColorByID);
+
+server.get( config.baseAPIPath +'/palettes', getAllPalettes);
 
 server.listen(mongodbPort, function () {
   console.log('%s listening at %s', server.name, server.url);
