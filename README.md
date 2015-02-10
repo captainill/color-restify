@@ -11,7 +11,7 @@
 #### seed db ####
     npm run-script seed-db
 
-#### you can now test mongo in the interactive shell ####
+#### you can now test mongodb using the mongo shell ####
     $ mongo
     $ use color
     $ db.palettes.find()
