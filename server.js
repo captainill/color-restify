@@ -2,8 +2,8 @@ var restify = require('restify');
 var mongoose = require('mongoose');
 var config = require('./app/config.js')
 
-var mongodbPort = 7070;
-var mongoURI = process.env.MONGOLAB_URI || config.db;8
+var port = process.env.PORT || 7070;
+var mongoURI = process.env.MONGOLAB_URI || config.db;
 var db = mongoose.connect(mongoURI);
 var Schema = mongoose.Schema;
 
@@ -85,6 +85,6 @@ server.get( config.baseAPIPath +'/palette/:id', getPaletteByID);
 server.get( config.baseAPIPath +'/palettes', getAllPalettes);
 
 
-server.listen(mongodbPort, function () {
+server.listen(port, function () {
   console.log('%s listening at %s', server.name, server.url);
 });
